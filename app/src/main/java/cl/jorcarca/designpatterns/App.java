@@ -3,12 +3,16 @@
  */
 package cl.jorcarca.designpatterns;
 
+import java.util.logging.Logger;
+
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
+    private static Logger logger = Logger.getLogger(App.class.getSimpleName());
+
+    public String greetings() {
+        return new StringBuilder().append("Hello world from ").append(this.getClass().getSimpleName()).toString();
     }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        logger.info(new App().greetings());
     }
 }
