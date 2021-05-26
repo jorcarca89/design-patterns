@@ -24,7 +24,7 @@ public class UsernameAndPasswordHandlerTest {
 		AuthenticationProvider usernameAndPasswordProvider = new UsernameAndPasswordProvider("username",
 				"encryptedpassword");
 		boolean actualValue = usernameAndPasswordHandler.implementation(usernameAndPasswordProvider);
-		assertTrue("should handle UsernameAndPasswordProvider", actualValue);
+		assertTrue("Couldn\'t handle UsernameAndPasswordProvider", actualValue);
 	}
 
 }

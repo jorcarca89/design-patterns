@@ -24,6 +24,6 @@ public class OAuthHandlerTest {
 		AuthenticationProvider authenticationProvider = new OAuthProvider(
 				"origin=origin;username=username;password=encryptedpassword");
 		boolean actualValue = oAuthHandler.implementation(authenticationProvider);
-		assertTrue("should handle OAuthProvider", actualValue);
+		assertTrue("Couldn\'t handle OAuthProvider", actualValue);
 	}
 }
