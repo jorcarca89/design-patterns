@@ -1,7 +1,5 @@
 package cl.jorcarca.designpatterns.behavioral.chainofresponsibility;
 
-import static org.mockito.Mockito.description;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -43,12 +41,12 @@ public class BaseHandlerTest {
 	@Test
 	public void shouldPassNextHandlerIfCannotHandleTheProvider() {
 		baseHandlerWithNextHandler.handle(authenticationProvider);
-		Mockito.verify(nextHandler, description("Next handler wasn\'t invoked")).handle(authenticationProvider);
+		Mockito.verify(nextHandler).handle(authenticationProvider);
 	}
 
 	@Test
 	public void shouldNotPassNextHandlerIfDoesNotHaveNextHander() {
 		baseHandlerWithoutNextHandler.handle(authenticationProvider);
-		Mockito.verifyNoInteractions(nextHandler, description("Next handler was invoked"));
+		Mockito.verifyNoInteractions(nextHandler);
 	}
 }
