@@ -17,7 +17,7 @@ public class BaseHandlerTest {
 	private BaseHandler baseHandlerWithoutNextHandler;
 	private BaseHandler baseHandlerWithNextHandler;
 
-	public static class ConcreteBaseHandler extends BaseHandler {
+	private static class ConcreteBaseHandler extends BaseHandler {
 		public ConcreteBaseHandler() {
 			super();
 		}
