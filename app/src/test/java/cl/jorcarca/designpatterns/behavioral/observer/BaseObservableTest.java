@@ -10,17 +10,16 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BaseObservableTest {
-	private String observableName;
-	private BaseObservable baseObservable;
 	@Spy
 	Observer observer1;
 	@Spy
 	Observer observer2;
+	private String observableName = "Publisher";
+	private BaseObservable baseObservable;
 
 	@Before
 	public void setup() {
-		this.observableName = "Publisher";
-		this.baseObservable = new BaseObservable(observableName);
+		baseObservable = new BaseObservable(observableName);
 	}
 
 	@Test

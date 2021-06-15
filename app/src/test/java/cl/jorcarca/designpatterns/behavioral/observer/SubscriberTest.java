@@ -1,34 +1,34 @@
 package cl.jorcarca.designpatterns.behavioral.observer;
 
+import static org.mockito.Mockito.*;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SubscriberTest {
-	private String subscriberName;
-	private String publisherName;
+	@Mock
 	private Publisher publisher;
+
+	private String subscriberName = "Subscriber";
 	private Subscriber subscriber;
 
 	@Before
 	public void setup() {
-		this.subscriberName = "Subscriber";
-		this.publisherName = "Publisher";
-		this.subscriber = new Subscriber(subscriberName);
-		this.publisher = new Publisher(publisherName);
-
-		publisher.attachObserver(subscriber);
+		subscriber = new Subscriber(subscriberName);
 	}
 
 	@Test
 	public void shouldUpdate() {
 		String expectedUpdatedTitle = "Updated title";
-		assertEquals("", subscriber.getNewsTitle());
-		publisher.setTitle(expectedUpdatedTitle);
-		assertEquals(expectedUpdatedTitle, subscriber.getNewsTitle());
+		when(publisher.getTitle()).thenReturn(expectedUpdatedTitle);
 
+		assertEquals("", subscriber.getNewsTitle());
+
+		subscriber.update(publisher);
+		assertEquals(expectedUpdatedTitle, subscriber.getNewsTitle());
 	}
 }
