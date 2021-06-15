@@ -19,15 +19,13 @@ import cl.jorcarca.designpatterns.common.TimeProvider;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CurrentAccountTest {
-	private String currency;
-	private Integer initialAmount;
+	private String currency = "CLP";
+	private Integer initialAmount = 0;
 
 	private CurrentAccount currentAccount;
 
 	@Before
 	public void setup() {
-		this.currency = "CLP";
-		this.initialAmount = 0;
 		this.currentAccount = new CurrentAccount(currency, initialAmount);
 	}
 

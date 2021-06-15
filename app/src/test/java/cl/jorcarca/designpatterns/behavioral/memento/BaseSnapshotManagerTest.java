@@ -1,5 +1,6 @@
 package cl.jorcarca.designpatterns.behavioral.memento;
 
+import static org.mockito.Mockito.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -8,22 +9,17 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-
 @RunWith(MockitoJUnitRunner.class)
 public class BaseSnapshotManagerTest {
+	@Mock
+	Snapshotable snapshotable;
 	BaseSnapshotManager snapshotManager;
-	CurrentAccount currentAccount;
-	String currency;
-	Integer initialAmount;
 
 	@Before
 	public void setup() {
-		currency = "CLP";
-		initialAmount = 0;
-
-		currentAccount = new CurrentAccount(currency, initialAmount);
-		snapshotManager = new BaseSnapshotManager(currentAccount);
+		snapshotManager = new BaseSnapshotManager(snapshotable);
 	}
 
 	@Test
@@ -35,17 +31,20 @@ public class BaseSnapshotManagerTest {
 
 	@Test
 	public void shouldUndo() {
+		Snapshot snapshot = mock(Snapshot.class);
+		when(snapshotable.takeSnapshot()).thenReturn(snapshot);
+
 		int expectSnapshotSize = 0;
 		snapshotManager.takeSnapshot();
-		currentAccount.addTransaction(500);
 		snapshotManager.undo();
 		assertEquals(expectSnapshotSize, snapshotManager.getSnapshots().size());
 	}
 
 	@Test(expected = UnsupportedOperationException.class)
 	public void shouldGetImmutableSnapshotsList() {
+		Snapshot snapshot = mock(Snapshot.class);
 		List<Snapshot> snapshots = snapshotManager.getSnapshots();
-		snapshots.add(currentAccount.takeSnapshot());
+		snapshots.add(snapshot);
 
 		fail("Retrieve transaction list must be umodifiable");
 	}

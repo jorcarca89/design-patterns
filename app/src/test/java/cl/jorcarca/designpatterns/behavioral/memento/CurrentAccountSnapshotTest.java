@@ -13,15 +13,13 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CurrentAccountSnapshotTest {
-	private String currency;
-	private Integer initialAmount;
+	private String currency = "CLP";
+	private Integer initialAmount = 0;
 
 	private CurrentAccount currentAccount;
 
 	@Before
 	public void setup() {
-		this.currency = "CLP";
-		this.initialAmount = 0;
 		currentAccount = new CurrentAccount(currency, initialAmount);
 	}
 

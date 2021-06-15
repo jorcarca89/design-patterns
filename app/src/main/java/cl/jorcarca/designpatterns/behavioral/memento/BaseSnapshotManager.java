@@ -26,7 +26,6 @@ public class BaseSnapshotManager implements SnapshotManager {
     public void undo() {
         logger.info("Restoring snapshot and deleting it from snapshots list");
         snapshots.remove(snapshots.size() - 1).restore();
-        ;
     }
 
     public List<Snapshot> getSnapshots() {
